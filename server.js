@@ -23,10 +23,19 @@ app.get('/api/notes', (req, res) => {
       }
 })
 
+app.post('/api/notes', (req, res) => {
+    try {
+        const data = fs.writeFileSync(path.join(__dirname,'./db/db.json'), content)
+    }
+    catch (err) {
+        console.log(err)
+    }
+})
+
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname,'./public/index.html'))
 })
 
 app.listen(PORT, () => 
-    console.log(`Listening for requests on port ${PORT}!`)
+    console.log(`App listening for requests on port ${PORT}!`)
 );
